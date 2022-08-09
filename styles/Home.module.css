@@ -66,14 +66,11 @@
 }
 
 .grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+ display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.card {
+.card img {
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -82,7 +79,7 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-height: 200px;
 }
 
 .card:hover,
