@@ -5,25 +5,26 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 
-interface Pokemons{
-id:number;
-name:string;
-image:string;
+
+export async function getServerSideProps () {
+  const res = await fetch("https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json")
+return{
+  props: {
+    pokemon: await res.json()
+  }
 }
+}
+interface Pokemons{
+  id:number;
+  name:string;
+  image:string;
+  }
+  interface PokemonProps {
+    pokemon: Pokemons[]
+  }
 
-const Home: NextPage = () => {
-  const [pokemon, setPokemon] = useState<Pokemons[]>([])
+const Home = ({pokemon}:PokemonProps) => {
 
-
-
-  useEffect(()=>{
-    async function getPokemon() {
-     const res = await fetch("https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json")
-     const data = await res.json()
-     setPokemon(data)
-    }
-getPokemon()
-  },[])
   return (
     <div className={styles.container}>
 <Head>
